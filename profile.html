@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Maxima Hairdressers</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.login-container {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.login-container h1 {
+    color: #6a1b9a;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 2px solid #d6b3ff;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.login-container input:focus {
+    border-color: #6a1b9a;
+    outline: none;
+}
+.remember-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+    justify-content: left;
+}
+.login-container button {
+    width: 100%;
+    padding: 14px;
+    background: #d81b60;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+.login-container button:hover {
+    background: #ad1457;
+    transform: scale(1.03);
+}
+.login-container a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #6a1b9a;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.login-container a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 480px) {
+    .login-container { padding: 30px 20px; }
+    .login-container h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+    <h1>Login</h1>
+
+    <input type="text" placeholder="Full Name" id="name">
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Password" id="password">
+
+    <div class="remember-container">
+        <input type="checkbox" id="rememberMe">
+        <label for="rememberMe">Remember Me</label>
+    </div>
+
+    <button onclick="login()">Login</button>
+    <a href="reset.html">Forgot Password?</a>
+</div>
+
+<script>
+// Load saved values on page load
+window.onload = () => {
+    const rememberedName = localStorage.getItem("rememberedName");
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    if(rememberedName) document.getElementById("name").value = rememberedName;
+    if(rememberedEmail) document.getElementById("email").value = rememberedEmail;
+    if(rememberedName || rememberedEmail) document.getElementById("rememberMe").checked = true;
+};
+
+// Login function
+function login() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const remember = document.getElementById("rememberMe").checked;
+
+    if(!name || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    if(remember) {
+        localStorage.setItem("rememberedName", name);
+        localStorage.setItem("rememberedEmail", email);
+    } else {
+        localStorage.removeItem("rememberedName");
+        localStorage.removeItem("rememberedEmail");
+    }
+
+    alert("Login successful!");
+    // Redirect to main page
+     window.location.href = "mainpage.html";
+}
+</script>
+
+</body>
+</html>

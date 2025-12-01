@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxima Hairdressers</title>
+<style>
+/* BODY */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ccc;
+}
+
+/* PAGE CONTAINER */
+.page-container {
+    width: 100%;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    padding-bottom: 40px;
+    border: 3px solid #4caf50; /* Green border all around */
+    box-sizing: border-box;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.85);
+    padding: 6px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+/* LOGO + TITLE */
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo { font-size: 32px; }
+.site-title { font-size: 18px; font-weight: bold; color: #6a1b9a; }
+
+/* NAV LINKS */
+.nav-links a {
+    text-decoration: none;
+    color: #75091b;
+    font-weight: bold;
+    padding: 6px 12px; /* more space */
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: #d81b60;
+    color: white;
+}
+
+/* LOGIN LINK SPECIAL */
+.nav-links a.login-link {
+    background: #4caf50; /* green background */
+    color: white;
+    border: 3px solid #4caf50; /* green border all around */
+    margin-right: 25px; /* more space after previous link */
+    transition: 0.3s;
+}
+
+.nav-links a.login-link:hover {
+    background: #45a049; /* darker green on hover */
+    border-color: #45a049;
+}
+
+/* PROFILE ICON */
+.profile {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    margin-right: 40px;
+    background-color: #d81b60;
+    background-size: cover;
+    background-position: center;
+}
+
+/* HAMBURGER ICON */
+.menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-icon div {
+    width: 28px;
+    height: 3px;
+    background: #6d1018;
+    transition: 0.3s;
+}
+
+.menu-icon.open div:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+.menu-icon.open div:nth-child(2) { opacity: 0; }
+.menu-icon.open div:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+
+/* MOBILE */
+@media(max-width:768px){
+    .nav-links {
+        display:none!important; 
+        flex-direction:column; 
+        position:absolute; 
+        top:60px; 
+        right:0; 
+        width:200px; 
+        background:white; 
+        padding:20px; 
+        box-shadow:0 3px 8px rgba(0,0,0,0.2); 
+        border-left:3px solid #d81b60; 
+        gap:12px;
+    }
+    .nav-links.active{display:flex!important;}
+    .menu-icon{display:flex; color:#d81b60;}
+}
+
+/* DESKTOP */
+@media(min-width:769px){
+    .nav-links{display:flex!important; gap:25px;}
+    .menu-icon{display:none;}
+}
+
+/* HERO SECTION */
+.hero {
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero .main-logo { font-size:150px; }
+
+h1 { font-size:36px; color:#6a1b9a; }
+
+p.tagline { font-size:18px; max-width:650px; margin:0 auto; }
+
+.start-btn {
+    background:#d81b60;
+    color:white;
+    padding:14px 32px;
+    border-radius:10px;
+    text-decoration:none;
+    margin-top:20px;
+    display:inline-block;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="page-container">
+<header>
+    <div class="logo-title">
+        <div class="logo">👩‍🦰</div>
+        <div class="site-title">MAXIMA HAIRDRESSERS</div>
+    </div>
+
+    <div class="menu-icon" id="menuToggle"><div></div><div></div><div></div></div>
+
+    <nav class="nav-links" id="navbar">
+        <a href="about.html">About</a>
+        <a href="hairdress.html">Order Now</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="profile.html" class="login-link">Login</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="main-logo">👩‍🦰</div>
+    <h1>MAXIMA HAIRDRESSERS</h1>
+    <p class="tagline">
+        Discover the beauty in you!  
+        We don’t just style hair — we bring your confidence to life.
+    </p>
+    <a href="hairdress.html" class="start-btn">GET STARTED</a>
+</section>
+</div>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navbar");
+menuToggle.addEventListener("click", () => { 
+    nav.classList.toggle("active"); 
+    menuToggle.classList.toggle("open"); 
+});
+</script>
+
+</body>
+</html>
